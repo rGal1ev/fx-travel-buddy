@@ -65,7 +65,7 @@ public class Configuration {
         public static Map<String, String> components = new HashMap<>();
 
         static {
-
+            components.put("place-card", "/components/place-card.fxml");
         }
     }
 }

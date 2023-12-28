@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import models.User;
+import util.DBManager;
 import util.FragmentManager;
 import util.StateManager;
 import util.WindowManager;
@@ -21,6 +22,8 @@ public class ContainerView {
 
     @FXML
     private void initialize() {
+        DBManager.getAllPlaces();
+
         FragmentManager.injectFields(container, this);
         FragmentManager.change("home");
 

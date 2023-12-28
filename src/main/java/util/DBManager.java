@@ -1,8 +1,10 @@
 package util;
 
 import app.Configuration;
+import models.Place;
 import models.User;
 import java.sql.*;
+import java.util.ArrayList;
 
 // SQLite Java ->
 // https://www.tutorialspoint.com/sqlite/sqlite_java.htm
@@ -112,4 +114,42 @@ public class DBManager {
 
         } catch (SQLException ignored) {}
     }
+
+    public static void getAllPlaces() {
+        Connection _conn;
+        Statement _statement;
+
+        try {
+            _conn = DriverManager.getConnection(Configuration.Database.driver + DBManager.class.getResource(Configuration.Database.location).toExternalForm());
+            _statement = _conn.createStatement();
+
+            String SQL = """
+                    SELECT * FROM Places;
+                    """;
+
+            ResultSet set = _statement.executeQuery(SQL);
+            ArrayList<Place> places = new ArrayList<>();
+
+            while (set.next()) {
+                int setID = set.getInt("ID");
+                String setTitle = set.getString("TITLE");
+                String setDescription = set.getString("DESCRIPTION");
+                String setCity = set.getString("CITY");
+                String setImage = set.getString("IMAGE");
+
+                Place place = new Place(setID, setTitle, setDescription, setCity, setImage);
+                places.add(place);
+            }
+
+            StateManager.update("places", places);
+
+            set.close();
+            _statement.close();
+            _conn.close();
+
+        } catch (SQLException ignored) {}
+    }
+
+//    INSERT INTO Places(Title, Description, City, Image) VALUES
+//    ("Колодец", "Самый классный колодец", "Альметьевск", "https://gymnasia2.ru/wp-content/uploads/8/c/0/8c093929b0b0755126bcfa0c2a999b8c.jpeg");
 }
