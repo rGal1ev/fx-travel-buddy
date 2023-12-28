@@ -27,15 +27,16 @@ public class DBManager {
                 int setID = set.getInt("ID");
                 String setLogin = set.getString("LOGIN");
                 String setPassword = set.getString("PASSWORD");
+                String setFIO = set.getString("FIO");
 
                 if (setLogin.equals(login) && setPassword.equals(password)) {
-                    User user = new User(setID, setLogin);
+                    User user = new User(setID, setLogin, setFIO);
                     StateManager.update("user", user);
 
                     return;
                 }
 
-                User user = new User(-1, "");
+                User user = new User(-1, "", "");
                 StateManager.update("user", user);
             }
 

@@ -44,4 +44,9 @@ public class WindowManager {
 
         } catch (IOException ignored) {}
     }
+
+    public static void changeWindowTitle(Node node, String title) {
+        Stage rootStage = (Stage) node.getScene().getWindow();
+        rootStage.setTitle(title);
+    }
 }

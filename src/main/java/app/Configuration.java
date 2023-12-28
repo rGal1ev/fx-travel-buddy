@@ -16,6 +16,8 @@ public class Configuration {
                 tableSQLs.add("""
                         CREATE TABLE IF NOT EXISTS Users (
                             ID INTEGER PRIMARY KEY AUTOINCREMENT,
+                            
+                            FIO TEXT,
                             LOGIN TEXT UNIQUE NOT NULL,
                             PASSWORD TEXT NOT NULL
                         );
@@ -27,16 +29,33 @@ public class Configuration {
                             
                             TITLE TEXT UNIQUE NOT NULL,
                             DESCRIPTION TEXT NOT NULL,
-                            RATING REAL NOT NULL
+                            
+                            IMAGE TEXT NOT NULL
                         );
+                        """);
+
+                tableSQLs.add("""
+                        CREATE TABLE IF NOT EXISTS Places (
+                            ID INTEGER PRIMARY KEY AUTOINCREMENT,
+                            
+                            TITLE TEXT UNIQUE NOT NULL,
+                            DESCRIPTION TEXT NOT NULL,
+                            RATING REAL NOT NULL,
+                            
+                            IMAGE TEXT NOT NULL,
+                            CityID INTEGER NOT NULL,
+                            
+                            FOREIGN KEY (CityID)
+                                REFERENCES Cities (ID)
+                        )
                         """);
             }
         }
     }
 
     public static class WindowTitle {
-        public static String start = "Reg/Auth window";
-        public static String main = "Main window";
+        public static String start = "Travel Buddy - Авторизация";
+        public static String main = "Travel Buddy";
     }
 
     public static class Fragments {
@@ -44,6 +63,7 @@ public class Configuration {
 
         static {
             fragments.put("home", "/fragments/home-fragment.fxml");
+            fragments.put("user", "/fragments/user-fragment.fxml");
         }
     }
 

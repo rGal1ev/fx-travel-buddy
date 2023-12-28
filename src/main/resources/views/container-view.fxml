@@ -1,27 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.ContainerView">
    <center>
-      <VBox fx:id="container" alignment="CENTER" style="-fx-border-color: red;" BorderPane.alignment="CENTER" />
+      <VBox fx:id="container" alignment="CENTER" style="-fx-border-color: gray; -fx-border-radius: 5;" BorderPane.alignment="CENTER" />
    </center>
    <padding>
       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
    </padding>
-   <left>
-      <VBox alignment="CENTER" prefWidth="150.0" spacing="5.0" style="-fx-border-color: red;" BorderPane.alignment="CENTER">
+   <top>
+      <HBox BorderPane.alignment="CENTER">
          <BorderPane.margin>
-            <Insets right="10.0" />
+            <Insets bottom="10.0" />
          </BorderPane.margin>
          <children>
-            <Label text="Navigation" />
-            <Button fx:id="home" mnemonicParsing="false" text="Home" />
+            <VBox HBox.hgrow="ALWAYS">
+               <children>
+                  <Label fx:id="logo" text="TravelBuddy">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Label>
+                  <Label text="Выбирай места для путешествий" />
+               </children>
+            </VBox>
+            <VBox alignment="CENTER_RIGHT">
+               <children>
+                  <Label text="Пользователь" />
+                  <Label fx:id="userName" layoutX="10.0" layoutY="10.0" text="#name">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Label>
+               </children>
+            </VBox>
          </children>
-      </VBox>
-   </left>
+      </HBox>
+   </top>
+   <bottom>
+      <HBox BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="toStart" mnemonicParsing="false" style="-fx-background-color: lightgray;" text="Выйти">
+               <padding>
+                  <Insets bottom="5.0" left="15.0" right="15.0" top="5.0" />
+               </padding>
+            </Button>
+         </children>
+         <BorderPane.margin>
+            <Insets top="10.0" />
+         </BorderPane.margin>
+      </HBox>
+   </bottom>
 </BorderPane>

@@ -4,7 +4,7 @@ import javafx.fxml.FXML;
 import models.User;
 import util.StateManager;
 
-public class HomeFragment {
+public class UserFragment {
     private User user = (User) StateManager.get("user");
 
     @FXML
