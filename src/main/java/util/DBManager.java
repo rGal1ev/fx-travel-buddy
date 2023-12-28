@@ -8,6 +8,30 @@ import java.sql.*;
 // https://www.tutorialspoint.com/sqlite/sqlite_java.htm
 
 public class DBManager {
+    public static void updateUserInfo(int userId, String login, String fio) {
+        Connection _conn;
+        Statement _statement;
+
+        try {
+            _conn = DriverManager.getConnection(Configuration.Database.driver + DBManager.class.getResource(Configuration.Database.location).toExternalForm());
+            _statement = _conn.createStatement();
+
+            String SQL = String.format("""
+                    UPDATE Users
+                        set LOGIN = '%s'
+                        
+                    WHERE ID = %s
+                    """, login, userId);
+
+            _statement.executeUpdate(SQL);
+
+            _statement.close();
+            _conn.close();
+
+        } catch (SQLException error) {
+            System.out.println(error);
+        }
+    }
 
     public static void authUser(String login, String password) {
         Connection _conn;

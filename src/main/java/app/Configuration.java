@@ -24,29 +24,14 @@ public class Configuration {
                         """);
 
                 tableSQLs.add("""
-                        CREATE TABLE IF NOT EXISTS Cities (
-                            ID INTEGER PRIMARY KEY AUTOINCREMENT,
-                            
-                            TITLE TEXT UNIQUE NOT NULL,
-                            DESCRIPTION TEXT NOT NULL,
-                            
-                            IMAGE TEXT NOT NULL
-                        );
-                        """);
-
-                tableSQLs.add("""
                         CREATE TABLE IF NOT EXISTS Places (
                             ID INTEGER PRIMARY KEY AUTOINCREMENT,
                             
                             TITLE TEXT UNIQUE NOT NULL,
                             DESCRIPTION TEXT NOT NULL,
-                            RATING REAL NOT NULL,
                             
-                            IMAGE TEXT NOT NULL,
-                            CityID INTEGER NOT NULL,
-                            
-                            FOREIGN KEY (CityID)
-                                REFERENCES Cities (ID)
+                            CITY TEXT NOT NULL,
+                            IMAGE TEXT NOT NULL
                         )
                         """);
             }

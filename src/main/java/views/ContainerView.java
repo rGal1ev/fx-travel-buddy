@@ -37,8 +37,10 @@ public class ContainerView {
     }
 
     private void handleEvents() {
-        toStart.setOnMouseClicked(event -> WindowManager.changeViaPath(container, "/views/start-view.fxml", Configuration.WindowTitle.start));
-        StateManager.update("user", null);
+        toStart.setOnMouseClicked(event -> {
+            WindowManager.changeViaPath(container, "/views/start-view.fxml", Configuration.WindowTitle.start);
+            StateManager.update("user", null);
+        });
 
         userName.setOnMouseClicked(event -> {
             FragmentManager.change("user");
@@ -47,7 +49,7 @@ public class ContainerView {
 
         logo.setOnMouseClicked(event -> {
             FragmentManager.change("home");
-            WindowManager.changeWindowTitle(container, "Travel Buddy");
+            WindowManager.changeWindowTitle(container, "Travel Buddy - Главная");
         });
     }
 
